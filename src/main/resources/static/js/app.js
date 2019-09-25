@@ -8,8 +8,8 @@ angular.module('App', ['ngMaterial', 'ngMessages'])
          */
         function getAll () {
             $http.get('/translators').
-            then(function(response) {
-                $scope.translators = response.data['content'];
+                then(function(response) {
+                    $scope.translators = response.data['content'];
             });
         }
 
@@ -18,30 +18,77 @@ angular.module('App', ['ngMaterial', 'ngMessages'])
          */
         function createNewTranslator (translator) {
             $http.post('/translators', translator).
-            then(function (response) {
-                console.log(response);
+                then(function (response) {
+                    console.log(response);
+                    getAll();
+                }, function (err) {
+                    console.log(err);
+            });
+        }
+
+        /**
+         * Updates a translator and stores his new values.
+         * @param id id of translator that will be update.
+         * @param translator object with new values.
+         */
+        function updateTranslator (id, translator) {
+            $http.put('/translators/' + id, translator).
+                then(function (response) {
+                    console.log(response);
+                    getAll();
+                }, function (err) {
+                    console.log(err);
+            });
+        }
+
+        /**
+         * Deletes a translator on database.
+         * @param id translator's id that will be deleted.
+         */
+        function deleteTranslator(id) {
+            $http.delete('/translators/' + id).
+                then(function (response) {
+                    console.log(response);
+                    getAll();
             }, function (err) {
                 console.log(err);
             });
         }
 
-        $scope.showDialog = function(ev) {
+        $scope.showConfirm = function(id, ev) {
+            var confirm = $mdDialog.confirm()
+                .title('Are you sure?')
+                .textContent('This translator will be deleted permanently')
+                .targetEvent(ev)
+                .ok('Yes')
+                .cancel('No');
+
+            $mdDialog.show(confirm).then(function() {
+                deleteTranslator(id);
+            }, function() {
+                console.log("Canceled");
+            });
+        };
+
+        $scope.showDialog = function(_translator, ev) {
             $mdDialog.show({
                 controller: DialogController,
                 templateUrl: 'templates/translator-dialog.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
-                clickOutsideToClose:true,
+                controllerAs: 'ctrl',
+                locals: {translator: _translator},
+                clickOutsideToClose: true,
                 fullscreen: $scope.customFullscreen
             })
                 .then(function(answer) {
-                    $scope.status = 'You said the information was "' + answer + '".';
+                    $scope.status = answer;
                 }, function() {
-                    $scope.status = 'You cancelled the dialog.';
+                    $scope.status = 'Closed!';
                 });
         };
 
-        function DialogController($scope, $mdDialog, $http) {
+        function DialogController($scope, $mdDialog, translator) {
 
             $scope.newTranslator = {
                 name: '',
@@ -50,10 +97,25 @@ angular.module('App', ['ngMaterial', 'ngMessages'])
                 targetLanguage: ''
             };
 
+            if(translator !== undefined) {
+                $scope.newTranslator.name = translator.name;
+                $scope.newTranslator.email = translator.email;
+                $scope.newTranslator.sourceLanguage = translator.sourceLanguage;
+                $scope.newTranslator.targetLanguage = translator.targetLanguage;
+                $scope.titleDialog = "Update translator";
+            } else {
+                $scope.titleDialog = "Add new translator";
+            }
+
             $scope.languages = ['en_gb', 'en_us', 'es_es', 'pt_br'];
 
-            $scope.createTranslator = function () {
-                createNewTranslator($scope.newTranslator);
+            $scope.saveBtn = function () {
+                if(translator !== undefined){
+                    updateTranslator(translator.id, $scope.newTranslator);
+                } else {
+                    createNewTranslator($scope.newTranslator);
+                }
+                $mdDialog.hide();
             };
 
             $scope.hide = function () {

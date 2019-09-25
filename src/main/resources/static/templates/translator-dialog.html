@@ -2,7 +2,7 @@
     <form ng-cloak>
         <md-toolbar>
             <div class="md-toolbar-tools toolbar-dialog">
-                <h2>Add new translator</h2>
+                <h2>{{titleDialog}}</h2>
                 <span flex></span>
                 <md-button class="md-icon-button" ng-click="cancel()">
                     <md-icon aria-label="Close dialog"><i class="fas fa-times"></i></md-icon>
@@ -54,7 +54,7 @@
             <md-button ng-click="cancel()">
                Cancel
             </md-button>
-            <md-button class="md-raised md-warn" ng-click="createTranslator()"
+            <md-button class="md-raised md-warn" ng-click="saveBtn()"
                        ng-disabled="newTranslator.name === ''
                                     || newTranslator.email === ''
                                     || newTranslator.sourceLanguage === ''

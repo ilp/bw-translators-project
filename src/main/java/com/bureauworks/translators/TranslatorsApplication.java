@@ -20,6 +20,9 @@ public class TranslatorsApplication {
 		SpringApplication.run(TranslatorsApplication.class, args);
 	}
 
+	/**
+	 * Initialize the db if not exist any data (this is just for tests).
+	 */
 	@Bean
 	InitializingBean sendDatabase() {
 		if (translatorRepository.findAll().size() > 0)
@@ -89,5 +92,4 @@ public class TranslatorsApplication {
 			};
 		}
 	}
-
 }

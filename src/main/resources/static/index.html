@@ -17,7 +17,7 @@
 </head>
 <body ng-app="App" ng-cloak>
 
-<div layout="column" layout-align="center center" ng-controller="TranslatorCtrl" ng-cloak>
+<div layout="column" layout-align="center center" ng-controller="TranslatorCtrl" ng-cloak class="main-body">
     <div flex="">
         <div layout="column" class="header" layout-align="center center">
             <div flex="">
@@ -28,7 +28,7 @@
             </div>
             <div flex="50">
                 <md-input-container md-no-float class="md-block">
-                    <input ng-model="searchTranslator" type="text" placeholder="Search a translator" aria-label="Translator">
+                    <input ng-model="searchTranslator" type="text" placeholder="Search a translator" aria-label="Translator" width="200px">
                     <md-icon style="display:inline-block;"><i class="fas fa-search"></i></md-icon>
                 </md-input-container>
             </div>
@@ -58,10 +58,10 @@
                     </md-card-content>
 
                     <md-card-actions layout="row" layout-align="end center">
-                        <md-button class="md-icon-button" aria-label="Favorite">
+                        <md-button class="md-icon-button" aria-label="Favorite" ng-click="showDialog(translator, $event)">
                             <i class="fas fa-user-edit"></i>
                         </md-button>
-                        <md-button class="md-icon-button" aria-label="Settings">
+                        <md-button class="md-icon-button" aria-label="Settings" ng-click="showConfirm(translator.id, $event)">
                             <i class="fas fa-trash"></i>
                         </md-button>
                     </md-card-actions>
@@ -70,11 +70,18 @@
         </div>
     </div>
     <div class="floating-button">
-        <md-button class="md-fab md-warn"  aria-label="Add translator" ng-click="showDialog($event)">
+        <md-button class="md-fab md-warn"  aria-label="Add translator" ng-click="showDialog(undefined, $event)">
             <i class="fas fa-user-plus"></i>
         </md-button>
     </div>
 </div>
+<footer>
+    <div layout="column" layout-align="center center">
+        <div>
+            <h3>Developed by Iverson Pereira</h3>
+        </div>
+    </div>
+</footer>
 
 <!-- Angular Material requires Angular.js Libraries -->
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular.min.js"></script>

@@ -20,6 +20,12 @@ public class TranslatorController {
     @Autowired
     private TranslatorRepository translatorRepository;
 
+    /**
+     * Was added pagination because the database can contain more one million of data.
+     *
+     * @param pageable Object contains the params of pagination.
+     * @return a set of Translator based on params.
+     */
     @GetMapping("/translators")
     public Page<Translator> getTranslators(Pageable pageable) {
         return translatorRepository.findAll(pageable);

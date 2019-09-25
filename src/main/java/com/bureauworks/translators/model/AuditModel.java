@@ -13,6 +13,9 @@ import java.util.Date;
  * @author Iverson Pereira
  */
 
+/**
+ * This class is responsible to capture the dates of creation and update. It is transparent for the client.
+ */
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties(
