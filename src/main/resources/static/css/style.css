@@ -1,0 +1,42 @@
+body {
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.header {
+    padding: 20px;
+}
+
+.main-title {
+    font-size: 35px;
+    font-weight: 600 !important;
+    line-height: 50px;
+    color: #434563;
+    margin-top: 20px;
+}
+
+.image-header {
+    width: 200px;
+}
+
+.floating-button {
+    position: fixed;
+    right:    0;
+    bottom:   0;
+    padding: 30px;
+}
+
+.card-translator {
+    width: 300px;
+}
+
+.flags {
+    width: 100px;
+}
+
+.flag {
+    padding: 5px;
+}
+
+.toolbar-dialog {
+    background-color: #FF5722;
+}

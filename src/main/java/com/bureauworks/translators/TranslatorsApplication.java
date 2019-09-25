@@ -64,7 +64,7 @@ public class TranslatorsApplication {
 				translatorRepository.save(new Translator(
 						"Sicrano José",
 						"fulano@gmail.com",
-						"es_us",
+						"en_us",
 						"pt_br"));
 				translatorRepository.save(new Translator(
 						"Sicrano José",

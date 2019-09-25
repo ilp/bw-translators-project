@@ -26,12 +26,12 @@ public class TranslatorController {
     }
 
     @PostMapping("/translators")
-    public Translator createQuestion(@Valid @RequestBody Translator translator) {
+    public Translator createTranslator(@Valid @RequestBody Translator translator) {
         return translatorRepository.save(translator);
     }
 
     @PutMapping("/translators/{translatorId}")
-    public Translator updateQuestion(@PathVariable Long translatorId,
+    public Translator createTranslator(@PathVariable Long translatorId,
                                        @Valid @RequestBody Translator translatorRequest) {
         return translatorRepository.findById(translatorId)
                 .map(translator -> {

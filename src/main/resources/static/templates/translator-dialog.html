@@ -1,0 +1,66 @@
+<md-dialog aria-label="Add new translator">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools toolbar-dialog">
+                <h2>Add new translator</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon aria-label="Close dialog"><i class="fas fa-times"></i></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <md-content layout-gt-sm="row" layout-padding>
+                <div>
+                    <md-input-container>
+                        <label>Name</label>
+                        <input ng-model="newTranslator.name">
+                    </md-input-container>
+
+                    <md-input-container>
+                        <label>E-mail</label>
+                        <input ng-model="newTranslator.email" type="email">
+                    </md-input-container>
+                </div>
+            </md-content>
+            <md-content layout-gt-sm="column" layout-padding>
+                <md-input-container>
+                    <label>Language source</label>
+                    <md-select ng-model="newTranslator.sourceLanguage">
+                        <md-option ng-repeat="language in languages" ng-value="language" ng-disabled="language === newTranslator.targetLanguage">
+                            <div layout="row" layout-align="start center">
+                                <img class="flag" height="30px" ng-attr-title="{{language}}" ng-src="assets/images/flags/{{language}}.svg">
+                                <span>{{language}}</span>
+                            </div>
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container>
+                    <label>Language target</label>
+                    <md-select ng-model="newTranslator.targetLanguage">
+                        <md-option ng-repeat="language in languages" ng-value="language" ng-disabled="language === newTranslator.sourceLanguage">
+                            <div layout="row" layout-align="start center">
+                                <img class="flag" height="30px" ng-attr-title="{{language}}" ng-src="assets/images/flags/{{language}}.svg">
+                                <span>{{language}}</span>
+                            </div>
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+            </md-content>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+            <md-button ng-click="cancel()">
+               Cancel
+            </md-button>
+            <md-button class="md-raised md-warn" ng-click="createTranslator()"
+                       ng-disabled="newTranslator.name === ''
+                                    || newTranslator.email === ''
+                                    || newTranslator.sourceLanguage === ''
+                                    || newTranslator.targetLanguage === ''">
+                Save
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>
