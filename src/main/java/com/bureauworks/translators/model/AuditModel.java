@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author Iverson Pereira (iversonp)
+ * @author Iverson Pereira
  */
 
 @MappedSuperclass

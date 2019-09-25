@@ -29,6 +29,15 @@ public class Translator extends AuditModel{
     @Column(name = "target_language")
     private String targetLanguage;
 
+    public Translator() { }
+
+    public Translator(String name, String email, String sourceLanguage, String targetLanguage) {
+        this.name = name;
+        this.email = email;
+        this.sourceLanguage = sourceLanguage;
+        this.targetLanguage = targetLanguage;
+    }
+
     public Long getId() {
         return id;
     }
