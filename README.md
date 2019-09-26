@@ -15,6 +15,7 @@ Tested on Ubuntu 18.04
 If already installed on your machine, certify yourself that you have the following username and password on your PostgreSQL. Otherwise, change the file *[application.properties](https://github.com/ilp/bw-translators-project/blob/master/src/main/resources/application.properties)* with the correct credentials or create if needed.
 
 Properties to connect with database:
+
 `spring.datasource.url= jdbc:postgresql://localhost:5432/postgres`
 
 `spring.datasource.username=postgres`
