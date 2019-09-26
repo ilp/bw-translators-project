@@ -14,6 +14,13 @@ Tested on Ubuntu 18.04
 
 If already installed on your machine, certify yourself that you have the following username and password on your PostgreSQL. Otherwise, change the file *[application.properties](https://github.com/ilp/bw-translators-project/blob/master/src/main/resources/application.properties)* with the correct credentials or create if needed.
 
+Properties to connect with database:
+`spring.datasource.url= jdbc:postgresql://localhost:5432/postgres`
+
+`spring.datasource.username=postgres`
+
+`spring.datasource.password=password`
+
 - **Username**: postgres
 - **Password**: password
 
@@ -34,7 +41,7 @@ If already installed on your machine, certify yourself that you have the followi
 
 - If the database connection is successful access http://localhost:8080.
 
-### Understanding the Translators Manager
+### Understanding Translators Manager
 
 Bellow some images with the features of this application.
 
@@ -50,10 +57,8 @@ To create a new translator just to click on floating button to open the dialog a
 
 To edit or delete is just to click on the buttons present in each card.
 
-
-
 ### Testing the CRUD with Swagger
 
-Access the <http://localhost:8080/swagger-ui.html>
+Access <http://localhost:8080/swagger-ui.html>
 
 ![Swagger](demo/swagger.png)
